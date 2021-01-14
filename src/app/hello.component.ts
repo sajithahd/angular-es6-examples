@@ -8,11 +8,12 @@ import { Component, Input } from "@angular/core";
     <div>
       <label>Get filered output</label>
       <br />
-      <button (click)="filter('Shoes')">Filter by category</button>
+      <button (click)="filter('Shirts')">Shirts</button>
+      <button (click)="filter('Shoes')">Shoes</button>
     </div>
     <div>
       <span *ngFor="let product of filteredProdcuts">
-        {{ product.name }}
+        {{ product.name }},
       </span>
     </div>
   `,
@@ -29,23 +30,25 @@ export class HelloComponent {
 
   products: any[] = [
     { name: "Levi's", category: "Shirts" },
-    { name: "Nike", role: "Shoes" },
-    { name: "Tommy hilfiger", role: "Shirts" },
-    { name: "US Polo", role: "Trousers" },
-    { name: "Puma", role: "Shoes" },
-    { name: "Adidas", role: "Shoes" },
-    { name: "Louis", role: "Trousers" }
+    { name: "Nike", category: "Shoes" },
+    { name: "Tommy hilfiger", category: "Shirts" },
+    { name: "US Polo", category: "Trousers" },
+    { name: "Puma", category: "Shoes" },
+    { name: "Adidas", category: "Shoes" },
+    { name: "Louis", category: "Trousers" }
   ];
 
   filteredProdcuts: any[] = [];
 
   filter(category: string) {
-    this.products.filter(pro => {
-      // console.log(pro, category);
-      if (pro.category) {
-        this.filteredProdcuts.push(pro);
-      }
+    // this.products.filter(pro => {
+    //   if (pro.category === category) {
+    //     this.filteredProdcuts.push(pro);
+    //   }
+    // });
+
+    this.filteredProdcuts = this.products.filter(pro => {
+      return pro.category === category;
     });
-    // this.filteredProdcuts.push({ name: "Louis", role: "Trousers" });
   }
 }
