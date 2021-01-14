@@ -14,13 +14,12 @@ export class WaitForObservables {
   observable2: Observable<any>;
 
   constructor() {
-    this.observable1 = timer(1000,20000);
-    
-    //this.merge();
+    this.observable1 = timer(1000, 4000);
+
+    this.merge();
   }
 
-  merge(){
-    this.observable1.subscribe(v=> console.log(v))
+  merge() {
+    this.observable1.subscribe(v => console.log(v));
   }
-  
 }
