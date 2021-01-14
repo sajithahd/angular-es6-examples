@@ -1,5 +1,5 @@
 import { Component, OnDestroy } from "@angular/core";
-import { concat, interval, Observable, Subscription, timer } from "rxjs";
+import { concat, interval, merge, Observable, Subscription, timer } from "rxjs";
 import { map, take } from "rxjs/operators";
 
 @Component({
@@ -12,8 +12,14 @@ import { map, take } from "rxjs/operators";
     </div>
 
     <div>
-      Wait for all observables
-      <button (click)="merge()">Merge All</button>
+      Concat wait for all observables
+      <button (click)="concat()">Concat</button>
+      <br />
+    </div>
+
+    <div>
+      Merge and wait for all observables
+      <button (click)="merge()">Merge</button>
       <br />
     </div>
   `
@@ -41,8 +47,14 @@ export class WaitForObservables implements OnDestroy {
     this.subscription2 = this.observable2.subscribe(v => console.log(v));
   }
 
-  merge() {
+  concat() {
     concat(this.observable1, this.observable2).subscribe(res =>
+      console.log(res)
+    );
+  }
+
+  merge() {
+    merge(this.observable1, this.observable2).subscribe(res =>
       console.log(res)
     );
   }
