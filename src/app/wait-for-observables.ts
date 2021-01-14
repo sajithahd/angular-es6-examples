@@ -39,12 +39,13 @@ import { map, take, flatMap } from "rxjs/operators";
     </div>
 
     <div>
-      ForkJoin and wait for all observables:
+      Flat Map and wait for all observables:
       <button (click)="flatMap()">Flat Map</button>
       <br />
     </div>
   `
 })
+
 export class WaitForObservables implements OnDestroy {
   observable1: Observable<number>;
   observable2: Observable<number>;
