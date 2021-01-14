@@ -1,5 +1,13 @@
 import { Component, OnDestroy } from "@angular/core";
-import { concat, interval, merge, Observable, Subscription, timer } from "rxjs";
+import {
+  concat,
+  forkJoin,
+  interval,
+  merge,
+  Observable,
+  Subscription,
+  timer
+} from "rxjs";
 import { map, take } from "rxjs/operators";
 
 @Component({
@@ -22,6 +30,13 @@ import { map, take } from "rxjs/operators";
       <button (click)="merge()">Merge</button>
       <br />
     </div>
+
+    <div>
+      forkJoin and wait for all observables
+      <button (click)="forkJoin()">Fork Join</button>
+      <br />
+    </div>
+    
   `
 })
 export class WaitForObservables implements OnDestroy {
@@ -59,6 +74,11 @@ export class WaitForObservables implements OnDestroy {
     );
   }
 
+  forkJoin() {
+    forkJoin(this.observable1, this.observable2).subscribe(res =>
+      console.log(res)
+    );
+  }
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
     this.subscription2.unsubscribe();
