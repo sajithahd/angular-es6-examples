@@ -16,10 +16,11 @@ import { Component, Input } from "@angular/core";
 export class HelloComponent {
   @Input() name: string;
 
-  users: any[] = [
-    { name: "Luke Skywalker", role: "Admin" },
-    { name: "Clark Kent", role: "Manager" },
-    { name: "Peter Parker", role: "Manager" },
-    { name: "John Doe", role: "User" }
+  products: any[] = [
+    { name: "Levi's", category: "Shirts" },
+    { name: "Nike", role: "Shoes" },
+    { name: "Tommy hilfiger", role: "Shirts" },
+    { name: "US Polo", role: "Trousers" },
+    { name: "Adidas", role: "Shoes" }
   ];
 }
