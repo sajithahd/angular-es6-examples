@@ -14,25 +14,31 @@ import { map, take } from "rxjs/operators";
   selector: "wait-for-observables",
   template: `
     <div>
-      Multiple observables
+      Multiple observables:
       <button (click)="mulitpleObservables()">Multiple observables</button>
       <br />
     </div>
 
     <div>
-      Concat wait for all observables
+      Concat wait for all observables:
       <button (click)="concat()">Concat</button>
       <br />
     </div>
 
     <div>
-      Merge and wait for all observables
+      Merge and wait for all observables: 
       <button (click)="merge()">Merge</button>
       <br />
     </div>
 
     <div>
-      forkJoin and wait for all observables
+      ForkJoin and wait for all observables: 
+      <button (click)="forkJoin()">Fork Join</button>
+      <br />
+    </div>
+
+     <div>
+      ForkJoin and wait for all observables: 
       <button (click)="forkJoin()">Fork Join</button>
       <br />
     </div>
@@ -48,7 +54,7 @@ export class WaitForObservables implements OnDestroy {
   constructor() {
     this.observable1 = timer(1000, 1000)
       .pipe(map(v => v))
-      .pipe(take(3));
+      .pipe(take(4));
 
     this.observable2 = timer(1000, 1000)
       .pipe(map(v => v))
@@ -79,6 +85,7 @@ export class WaitForObservables implements OnDestroy {
       console.log(res)
     );
   }
+
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
     this.subscription2.unsubscribe();
