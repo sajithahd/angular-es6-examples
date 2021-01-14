@@ -25,7 +25,7 @@ import { Component, Input } from "@angular/core";
     `
   ]
 })
-export class HelloComponent {
+export class FilterComponent {
   @Input() name: string;
 
   products: any[] = [
