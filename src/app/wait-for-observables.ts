@@ -64,6 +64,7 @@ export class WaitForObservables implements OnDestroy {
     // this.mulitpleObservables();
     // this.merge();
   }
+  
   mulitpleObservables() {
     this.subscription = this.observable1.subscribe(v => console.log(v));
     this.subscription2 = this.observable2.subscribe(v => console.log(v));
