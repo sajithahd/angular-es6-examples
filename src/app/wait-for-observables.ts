@@ -42,9 +42,9 @@ export class WaitForObservables implements OnDestroy {
   }
 
   merge() {
-    this.observable1
-      .pipe(c => concat(this.observable2))
-      .subscribe(res => console.log(res));
+    concat(this.observable1, this.observable2).subscribe(res =>
+      console.log(res)
+    );
   }
 
   ngOnDestroy(): void {
