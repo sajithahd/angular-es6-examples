@@ -45,6 +45,8 @@ export class HelloComponent {
     this.products.filter(pro => {
       if (pro.category === category) {
         this.filteredProdcuts.push(pro);
+      } else {
+        // some other array
       }
     });
 
