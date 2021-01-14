@@ -21,6 +21,8 @@ export class HelloComponent {
     { name: "Nike", role: "Shoes" },
     { name: "Tommy hilfiger", role: "Shirts" },
     { name: "US Polo", role: "Trousers" },
-    { name: "Adidas", role: "Shoes" }
+    { name: "Puma", role: "Shoes" },
+    { name: "Adidas", role: "Shoes" },
+    { name: "Louis", role: "Trousers" }
   ];
 }
