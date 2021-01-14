@@ -41,14 +41,25 @@ export class HelloComponent {
   filteredProdcuts: any[] = [];
 
   filter(category: string) {
-    // this.products.filter(pro => {
-    //   if (pro.category === category) {
-    //     this.filteredProdcuts.push(pro);
-    //   }
-    // });
+    // 1.
+    this.products.filter(pro => {
+      if (pro.category === category) {
+        this.filteredProdcuts.push(pro);
+      }
+    });
 
+    // 2.
     this.filteredProdcuts = this.products.filter(pro => {
       return pro.category === category;
     });
+
+    // 3.
+    this.filteredProdcuts = this.products.filter(
+      prodcut => prodcut.category === category
+    );
+
+    // this.filteredProdcuts[0] = this.products.find(pro => {
+    //   return pro.category === category;
+    // });
   }
 }
