@@ -89,7 +89,7 @@ export class WaitForObservables implements OnDestroy {
   }
 
   flatMap() {
-    this.observable1
+    this.observable1 // or of(10)
       .pipe(
         flatMap(op1 => {
           return of(op1 + 10);
