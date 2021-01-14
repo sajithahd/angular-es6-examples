@@ -5,10 +5,11 @@ import {
   interval,
   merge,
   Observable,
+  of,
   Subscription,
   timer
 } from "rxjs";
-import { map, take } from "rxjs/operators";
+import { map, take, flatMap } from "rxjs/operators";
 
 @Component({
   selector: "wait-for-observables",
@@ -26,23 +27,22 @@ import { map, take } from "rxjs/operators";
     </div>
 
     <div>
-      Merge and wait for all observables: 
+      Merge and wait for all observables:
       <button (click)="merge()">Merge</button>
       <br />
     </div>
 
     <div>
-      ForkJoin and wait for all observables: 
+      ForkJoin and wait for all observables:
       <button (click)="forkJoin()">Fork Join</button>
       <br />
     </div>
 
-     <div>
-      ForkJoin and wait for all observables: 
-      <button (click)="forkJoin()">Fork Join</button>
+    <div>
+      ForkJoin and wait for all observables:
+      <button (click)="flatMap()">Flat Map</button>
       <br />
     </div>
-    
   `
 })
 export class WaitForObservables implements OnDestroy {
@@ -84,6 +84,16 @@ export class WaitForObservables implements OnDestroy {
     forkJoin(this.observable1, this.observable2).subscribe(res =>
       console.log(res)
     );
+  }
+
+  flatMap() {
+    this.observable1
+      .pipe(
+        flatMap(op1 => {
+          return of(op1 + 10);
+        })
+      )
+      .subscribe(res => console.log(res));
   }
 
   ngOnDestroy(): void {
