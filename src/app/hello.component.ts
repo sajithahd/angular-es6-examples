@@ -8,11 +8,11 @@ import { Component, Input } from "@angular/core";
     <div>
       <label>Get filered output</label>
       <br />
-      <button (click)="filter()">Filter by category</button>
+      <button (click)="filter('Shoes')">Filter by category</button>
     </div>
     <div>
       <span *ngFor="let product of filteredProdcuts">
-        {{product.name}}
+        {{ product.name }}
       </span>
     </div>
   `,
@@ -36,9 +36,16 @@ export class HelloComponent {
     { name: "Adidas", role: "Shoes" },
     { name: "Louis", role: "Trousers" }
   ];
+
   filteredProdcuts: any[] = [];
 
-  filter() {
-    this.filteredProdcuts.push( { name: "Louis", role: "Trousers" });
+  filter(category: string) {
+    this.products.filter(pro => {
+      // console.log(pro, category);
+      if (pro.category) {
+        this.filteredProdcuts.push(pro);
+      }
+    });
+    // this.filteredProdcuts.push({ name: "Louis", role: "Trousers" });
   }
 }
