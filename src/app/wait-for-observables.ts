@@ -7,13 +7,13 @@ import { map, take } from "rxjs/operators";
   template: `
     <div>
       Multiple observables
-      <button (click)="(mulitpleObservables)">Multiple observables</button>
+      <button (click)="mulitpleObservables()">Multiple observables</button>
       <br />
     </div>
 
     <div>
       Wait for all observables
-      <button (click)="(mulitpleObservables)">Merge All</button>
+      <button (click)="merge()">Merge All</button>
       <br />
     </div>
   `
