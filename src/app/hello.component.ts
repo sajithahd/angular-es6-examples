@@ -4,6 +4,17 @@ import { Component, Input } from "@angular/core";
   selector: "hello",
   template: `
     <h1>Hello {{ name }}!</h1>
+
+    <div>
+      <label>Get filered output</label>
+      <br />
+      <button (click)="filter()">Filter by category</button>
+    </div>
+    <div>
+      <span *ngFor="let product of filteredProdcuts">
+        {{product.name}}
+      </span>
+    </div>
   `,
   styles: [
     `
@@ -25,4 +36,9 @@ export class HelloComponent {
     { name: "Adidas", role: "Shoes" },
     { name: "Louis", role: "Trousers" }
   ];
+  filteredProdcuts: any[] = [];
+
+  filter() {
+    this.filteredProdcuts.push( { name: "Louis", role: "Trousers" });
+  }
 }
