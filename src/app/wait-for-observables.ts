@@ -4,7 +4,7 @@ import { Component } from "@angular/core";
   selector: 'wait-for-observables',
   template:`
     <div>
-      wait for all observables
+      Wait for all observables
     </div>
   `
 })
