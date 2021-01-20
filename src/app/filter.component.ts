@@ -10,6 +10,7 @@ import { Component, Input } from "@angular/core";
       <br />
       <button (click)="filter('Shirts')">Shirts</button>
       <button (click)="filter('Shoes')">Shoes</button>
+      <button (click)="filter2('Trousers')">Trousers</button>
     </div>
     <div>
       <span *ngFor="let product of filteredProdcuts">
@@ -39,6 +40,10 @@ export class FilterComponent {
   ];
 
   filteredProdcuts: any[] = [];
+
+  filter2(category: string) {
+    this.filteredProdcuts = this.products.filter(p => p.category === category);
+  }
 
   filter(category: string) {
     // 1.
