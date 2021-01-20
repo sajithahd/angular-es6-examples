@@ -2,6 +2,8 @@ import { Component } from "@angular/core";
 import {
   concat,
   forkJoin,
+  fromEvent,
+  interval,
   merge,
   observable,
   Observable,
@@ -10,7 +12,7 @@ import {
   timer,
   zip
 } from "rxjs";
-import { flatMap, take } from "rxjs/operators";
+import { buffer, flatMap, take } from "rxjs/operators";
 
 @Component({
   selector: "wait-for-obs-2",
@@ -52,6 +54,11 @@ export class WaitForObservables2 {
     this.observable2 = timer(1000, 1000).pipe(take(3));
 
     this.observables = [of("hi"), of("sajitha"), of("welcom")];
+
+    const clicks = fromEvent(document, "click");
+    const intervalEvents = interval(1000);
+    const buffered = intervalEvents.pipe(buffer(clicks));
+    buffered.subscribe(x => console.log(x));
   }
 
   multiple() {
