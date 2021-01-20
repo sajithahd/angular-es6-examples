@@ -1,5 +1,14 @@
 import { Component } from "@angular/core";
-import { concat, merge, observable, Observable, Subscription, timer } from "rxjs";
+import {
+  concat,
+  forkJoin,
+  merge,
+  observable,
+  Observable,
+  of,
+  Subscription,
+  timer
+} from "rxjs";
 import { take } from "rxjs/operators";
 
 @Component({
@@ -15,6 +24,10 @@ import { take } from "rxjs/operators";
     <br />
     <span>Merge Observables</span>
     <button (click)="merge()">Merge</button>
+
+    <br />
+    <span>ForkJoin Observables</span>
+    <button (click)="forkjoin()">Fork Join</button>
   `
 })
 export class WaitForObservables2 {
@@ -23,9 +36,13 @@ export class WaitForObservables2 {
   subscription: Subscription;
   subscirption2: Subscription;
 
+  observables: Observable<string>[];
+
   constructor() {
     this.observable = timer(1000, 1000).pipe(take(2));
     this.observable2 = timer(1000, 1000).pipe(take(4));
+
+    this.observables = [of("hi"), of("sajitha"), of("welcom")];
   }
 
   multiple() {
@@ -40,6 +57,10 @@ export class WaitForObservables2 {
   merge() {
     merge(this.observable2, this.observable).subscribe(v => console.log(v));
   }
-
   
+  forkjoin() {
+    forkJoin(this.observable, this.observable2).subscribe(v => console.log(v));
+
+    forkJoin(this.observables).subscribe(v => console.log(v));
+  }
 }
