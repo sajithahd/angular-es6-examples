@@ -10,7 +10,7 @@ import {
   timer,
   zip
 } from "rxjs";
-import { take } from "rxjs/operators";
+import { flatMap, take } from "rxjs/operators";
 
 @Component({
   selector: "wait-for-obs-2",
@@ -33,6 +33,10 @@ import { take } from "rxjs/operators";
     <br />
     <span>Zip Observables</span>
     <button (click)="zip()">Zip</button>
+
+    <br />
+    <span>Flat Map Observables</span>
+    <button (click)="flatMap()">Flat Map</button>
   `
 })
 export class WaitForObservables2 {
@@ -44,8 +48,8 @@ export class WaitForObservables2 {
   observables: Observable<string>[];
 
   constructor() {
-    this.observable = timer(1000, 1000).pipe(take(2));
-    this.observable2 = timer(1000, 1000).pipe(take(4));
+    this.observable = timer(1000, 1000).pipe(take(3));
+    this.observable2 = timer(1000, 1000).pipe(take(3));
 
     this.observables = [of("hi"), of("sajitha"), of("welcom")];
   }
@@ -71,5 +75,15 @@ export class WaitForObservables2 {
 
   zip() {
     zip(this.observable, this.observable2).subscribe(v => console.log(v));
+  }
+
+  flatMap() {
+    of("sajitha")
+      .pipe(flatMap(v => of("hi " + v)))
+      .subscribe(v2 => console.log(v2));
+
+    // this.observable2
+    //   .pipe(flatMap(v => this.observable))
+    //   .subscribe(vaa => console.log(vaa));
   }
 }
