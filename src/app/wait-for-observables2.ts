@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { concat, observable, Observable, Subscription, timer } from "rxjs";
+import { concat, merge, observable, Observable, Subscription, timer } from "rxjs";
 import { take } from "rxjs/operators";
 
 @Component({
@@ -11,6 +11,10 @@ import { take } from "rxjs/operators";
     <br />
     <span>Concat Observables</span>
     <button (click)="concat()">Concat</button>
+
+    <br />
+    <span>Merge Observables</span>
+    <button (click)="merge()">Merge</button>
   `
 })
 export class WaitForObservables2 {
@@ -30,8 +34,12 @@ export class WaitForObservables2 {
   }
 
   concat() {
-    concat(this.observable2, this.observable).subscribe(
-      v=> console.log(v)
-    );
+    concat(this.observable2, this.observable).subscribe(v => console.log(v));
   }
+
+  merge() {
+    merge(this.observable2, this.observable).subscribe(v => console.log(v));
+  }
+
+  
 }
