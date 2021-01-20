@@ -54,11 +54,11 @@ export class WaitForObservables implements OnDestroy {
 
   constructor() {
     this.observable1 = timer(1000, 1000)
-      .pipe(map(v => v))
+      //.pipe(map(v => v))
       .pipe(take(4));
 
     this.observable2 = timer(1000, 1000)
-      .pipe(map(v => v))
+    //  .pipe(map(v => v))
       .pipe(take(3));
 
     // this.mulitpleObservables();
