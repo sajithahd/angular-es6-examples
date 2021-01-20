@@ -7,7 +7,8 @@ import {
   Observable,
   of,
   Subscription,
-  timer
+  timer,
+  zip
 } from "rxjs";
 import { take } from "rxjs/operators";
 
@@ -28,6 +29,10 @@ import { take } from "rxjs/operators";
     <br />
     <span>ForkJoin Observables</span>
     <button (click)="forkjoin()">Fork Join</button>
+
+    <br />
+    <span>Zip Observables</span>
+    <button (click)="zip()">Zip</button>
   `
 })
 export class WaitForObservables2 {
@@ -57,10 +62,14 @@ export class WaitForObservables2 {
   merge() {
     merge(this.observable2, this.observable).subscribe(v => console.log(v));
   }
-  
+
   forkjoin() {
-    forkJoin(this.observable, this.observable2).subscribe(v => console.log(v));
+    forkJoin(this.observable2, this.observable).subscribe(v => console.log(v));
 
     forkJoin(this.observables).subscribe(v => console.log(v));
+  }
+
+  zip() {
+    zip(this.observable, this.observable2).subscribe(v => console.log(v));
   }
 }
