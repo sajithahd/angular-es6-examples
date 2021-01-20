@@ -12,7 +12,14 @@ import {
   timer,
   zip
 } from "rxjs";
-import { buffer, flatMap, take } from "rxjs/operators";
+import {
+  buffer,
+  flatMap,
+  groupBy,
+  mergeMap,
+  reduce,
+  take
+} from "rxjs/operators";
 
 @Component({
   selector: "wait-for-obs-2",
@@ -39,6 +46,10 @@ import { buffer, flatMap, take } from "rxjs/operators";
     <br />
     <span>Flat Map Observables</span>
     <button (click)="flatMap()">Flat Map</button>
+
+    <br />
+    <span>Group Observables</span>
+    <button (click)="group()">Group</button>
   `
 })
 export class WaitForObservables2 {
@@ -55,10 +66,10 @@ export class WaitForObservables2 {
 
     this.observables = [of("hi"), of("sajitha"), of("welcom")];
 
-    const clicks = fromEvent(document, "click");
-    const intervalEvents = interval(1000);
-    const buffered = intervalEvents.pipe(buffer(clicks));
-    buffered.subscribe(x => console.log(x));
+    // const clicks = fromEvent(document, "click");
+    // const intervalEvents = interval(1000);
+    // const buffered = intervalEvents.pipe(buffer(clicks));
+    // buffered.subscribe(x => console.log(x));
   }
 
   multiple() {
@@ -92,5 +103,20 @@ export class WaitForObservables2 {
     // this.observable2
     //   .pipe(flatMap(v => this.observable))
     //   .subscribe(vaa => console.log(vaa));
+  }
+
+  group() {
+    of(
+      { id: 1, name: "JavaScript" },
+      { id: 2, name: "Parcel" },
+      { id: 2, name: "webpack" },
+      { id: 1, name: "TypeScript" },
+      { id: 3, name: "TSLint" }
+    )
+      .pipe(
+        groupBy(p => p.id),
+        mergeMap(group$ => group$.pipe(reduce((acc, cur) => [...acc, cur], [])))
+      )
+      .subscribe(p => console.log(p));
   }
 }
